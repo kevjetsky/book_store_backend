@@ -3,6 +3,7 @@ import ctrl from './controllers';
 
 const router = Router();
 
-router.post('/', ctrl.sign_up);
+router.post('/signup', ctrl.sign_up);
+router.post('/login', ctrl.login);
 
 export default router;

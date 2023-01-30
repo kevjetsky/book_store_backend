@@ -1,6 +1,6 @@
 import User from './model';
 import { v4 as uuid } from'uuid'; 
-import { encryptPassword } from '../../utils/bcrypt';
+import { encryptPassword, decodePassword } from '../../utils/bcrypt';
 import { signToken } from '../../utils/jwt';
 
 export default {
@@ -29,5 +29,21 @@ export default {
         const token = signToken(newUser.uniqueId);
 
         return res.status(201).json(token);
-    }
+    },
+
+    login: async (req, res) => {
+        const { email, password } = req.body;
+
+        const user = await User.findOne({ email });
+
+        if(!user) return res.status(401).json({ error: "Wrong credentials" });
+    
+        if(!decodePassword(password, user.password)) return res.status(401).json({ error: "Wrong credentials" });
+    
+        const token = signToken(user.uniqueId);
+    
+        return res.status(201).json(token);
+    },
+
+    
 }
