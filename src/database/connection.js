@@ -6,7 +6,8 @@ const URI = 'mongodb://0.0.0.0/full-auth';
 connect(URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: false
+    useFindAndModify: false,
+    useCreateIndex: true
 })
     .then(db => console.log(">>> Database is connected"))
     .catch(err => console.error(err));
