@@ -45,5 +45,29 @@ export default {
         return res.status(201).json(token);
     },
 
-    
+    getUser: async (req, res) => {
+        const { sub: uniqueId } = req.user;
+
+        const user = await User.findOne({ uniqueId });
+
+        if(!user) return res.status(404).json({ message: "Wrong credentials" });
+
+        return res.status(201).json(user);
+    },
+
+    updateUser: async (req, res) => {
+        const { sub: uniqueId } = req.user;
+
+        await User.findOneAndUpdate({ uniqueId }, req.body);
+
+        return res.status(200).json({ msg: "User info updated successfully" });
+    },
+
+    deleteUser: async (req, res) => {
+        const { sub: uniqueId } = req.user;
+        
+        await User.findOneAndDelete({ uniqueId });
+
+        return res.status(200).json({ msg: "User deleted successfully" });
+    }
 }
