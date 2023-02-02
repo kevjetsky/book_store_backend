@@ -8,6 +8,7 @@ export default {
         const {
             fullName,
             email,
+            age,
             password
         } = req.body;
 
@@ -17,7 +18,8 @@ export default {
 
         const newUser = new User({
             fullName,
-            email,
+            email,,
+            age,
             password: encryptPassword(password),
             uniqueId: uuid()
         });
