@@ -6,8 +6,7 @@ import { signToken } from '../../utils/jwt';
 export default {
     sign_up: async (req, res) => {
         const {
-            firstName,
-            lastName,
+            fullName,
             email,
             password
         } = req.body;
@@ -17,8 +16,7 @@ export default {
         if(user) return res.status(401).json({ msg: "You have an account with this email, please sign_in" });
 
         const newUser = new User({
-            firstName,
-            lastName,
+            fullName,
             email,
             password: encryptPassword(password),
             uniqueId: uuid()
