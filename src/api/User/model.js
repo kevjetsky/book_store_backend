@@ -1,13 +1,7 @@
 import { model, Schema } from 'mongoose';
 
 const userSchema = new Schema({
-    firstName: {
-        type: String,
-        required: true,
-        lowercase: true
-    },
-
-    lastName: {
+    fullName: {
         type: String,
         required: true,
         lowercase: true
