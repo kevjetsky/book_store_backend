@@ -18,7 +18,7 @@ export default {
 
         const newUser = new User({
             fullName,
-            email,,
+            email,
             age,
             password: encryptPassword(password),
             uniqueId: uuid()
