@@ -1,7 +1,7 @@
 import { connect } from 'mongoose';
 
 // Replace <<NameDatabase>> for your local database name
-const URI = process.env.MONGODB_URI || 'mongodb://0.0.0.0/book-store';
+const URI = process.env.MONGODB_URI;
 
 connect(URI, {
     useNewUrlParser: true,
